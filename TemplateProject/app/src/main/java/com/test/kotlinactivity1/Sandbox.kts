@@ -1,24 +1,32 @@
 package com.test.kotlinactivity1
 
-val a = readLine();
+fun <T> linea(a:List<T>):List<Pair<Int,T>>{
 
+var result: List<Pair<Int,T>> = emptyList()
 var index = 1
 var count = 1;
 
-while (index <= (a!!.length-1)){
+while (index <= (a.size-1)){
 
-    if(a[index-1].equals(a[index]) )
+    if(a[index-1] == a[index] )
     {
         count++;
     }
     else
     {
-        println("${a[index-1]} , $count");
+        result+= Pair(count,a[index-1])
         count=1;
     }
 
     index++;
 }
+    result +=  Pair(count,a[index-1]);
+    return result;
 
-    println("${a!![index-1]} , $count");
+}
 
+    assert(linea("aaaabccaadeeee".toList()), listOf(
+    Pair(4, 'a'), Pair(1, 'b'), Pair(2, 'c'), Pair(2, 'a'), Pair(1, 'd'), Pair(4, 'e')))
+
+    assert(linea("hhhooola".toList()), listOf(Pair(3,'h'),Pair(3,'o'),Pair(1,'l'),Pair(1,'a')))
+    assert(linea("caaaaamiiiiioooon".toList()), listOf(Pair(1,'c'),Pair(5,'a'),Pair(1,'m'),Pair(5,'i'),Pair(4,'o'),Pair(1,'n')))
