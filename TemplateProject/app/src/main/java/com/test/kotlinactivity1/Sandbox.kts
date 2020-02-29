@@ -1,17 +1,47 @@
 package com.test.kotlinactivity1
 
+
+/*
 fun <T> linea(a:List<T>):List<Pair<Int,T>>{
 
 var result: List<Pair<Int,T>> = emptyList()
 var index = 1
 var count = 1;
 
-while (index <= (a.size-1)){
+mientras (index <= (a.size-1)){
 
     if(a[index-1] == a[index] )
     {
         count++;
     }
+    else
+    {
+        result+= Pair(count,a[index-1])
+        count=1;
+    }
+
+    index++;
+}
+    result +=  Pair(count,a[index-1]);
+    return result;
+
+}
+ */
+
+//funcion que regresa la lista
+fun <T> linea(a:List<T>):List<Pair<Int,T>>{
+
+var result: List<Pair<Int,T>> = emptyList()
+var index = 1
+var count = 1;
+//mientras que index sea menor al string
+while (index <= (a.size-1)){
+    //que verifique mientras el antecesor sea igual al otro, si es asi suma
+    if(a[index-1] == a[index] )
+    {
+        count++;
+    }
+    // si no es lo contrario entonces ya lo guarda en la lista
     else
     {
         result+= Pair(count,a[index-1])
