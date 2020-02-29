@@ -1,5 +1,20 @@
 package com.example.myapplication
 
+/*
+
+fun primo(numero: Int) : Int{
+    var x = 2;
+    while(x < numero){
+        si(numero modulo x == 0)
+            return x;
+        x++;
+    }
+    return 0
+}
+ */
+
+
+//funcion que verifica si el numero es primo
 fun primo(numero: Int) : Int{
     var x = 2;
     while(x < numero){
@@ -11,20 +26,22 @@ fun primo(numero: Int) : Int{
 }
 
 
-fun goldbachlist(rango: IntRange): List<Pair<Int,Int>>{
-    var lista : List<Pair<Int,Int>> = emptyList();
-    var primero = rango.first;
-    var ultimo = rango.last;
+/*
 
-    while(primero <= ultimo)
+fun goldbachlist(rango: IntRange): List<Pair<Int,Int>>{
+     lista : List<Pair<Int,Int>> = emptyList();
+    primero = rango.first;
+    ultimo = rango.last;
+
+    mientras(primero <= ultimo)
     {
-        if(primero % 2 == 0){
-            var aux2 = 2;
-            var aux = primero/2;
-            var aux3:Int
-            while(aux2 < aux){
-                if(primo(aux2) == 0){
-                    if(primo(primero-aux2) == 0){
+        si(primero % 2 == 0){
+             aux2 = 2;
+             aux = primero/2;
+             aux3:Int
+            mientras(aux2 < aux){
+                si(primo(aux2) == 0){
+                    si(primo(primero-aux2) == 0){
                         aux3=primero-aux2
                         lista += Pair(aux2,aux3)
                         break;
@@ -39,6 +56,72 @@ fun goldbachlist(rango: IntRange): List<Pair<Int,Int>>{
     return lista;
 }
 
+ */
+
+fun goldbachlist(rango: IntRange): List<Pair<Int,Int>>{
+    var lista : List<Pair<Int,Int>> = emptyList();
+    var primero = rango.first;
+    var ultimo = rango.last;
+
+    while(primero <= ultimo) //del rango mas bajo al ultimo
+    {
+        if(primero % 2 == 0){ //preguntar si es primo
+            var aux2 = 2;
+            var aux = primero/2;
+            var aux3:Int
+            while(aux2 < aux){  //mientras en aux2 sea menor a la mitad del nuermo a evaluar
+                if(primo(aux2) == 0){  //si es primo hay que sacar el otro
+                    if(primo(primero-aux2) == 0){ // si es el otro tambien primo lo
+                        aux3=primero-aux2 //agregamos a la lista
+                        lista += Pair(aux2,aux3)
+                        break;
+                    }
+
+                }
+                aux2++;
+            }
+        }
+        primero++;
+    }
+    return lista;
+}
+
+/*
+fun goldbachlistLimited(rango: IntRange,minimo: Int): List<Pair<Int,Int>>{
+    lista : List<Pair<Int,Int>> = emptyList();
+    primero = rango.first;
+    ultimo = rango.last;
+
+    mientras(primero <= ultimo)
+    {
+        si(primero % 2 == 0){
+             aux2 = 2;
+             aux = primero/2;
+             aux3: Int
+            mientras(aux2 < aux){
+                si(primo(aux2) == 0){
+                    si(primo(primero-aux2) == 0){
+                        si(aux2 > minimo) { //que el primo el minimo sea mayor al dado
+                            aux3=primero-aux2
+                            lista += Pair(aux2, aux3)
+                            break;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+
+                }
+                aux2++;
+            }
+        }
+        primero++;
+    }
+    return lista;
+}
+ */
+
+//igual que el anterior solo agregamos algo
 fun goldbachlistLimited(rango: IntRange,minimo: Int): List<Pair<Int,Int>>{
     var lista : List<Pair<Int,Int>> = emptyList();
     var primero = rango.first;
@@ -53,7 +136,7 @@ fun goldbachlistLimited(rango: IntRange,minimo: Int): List<Pair<Int,Int>>{
             while(aux2 < aux){
                 if(primo(aux2) == 0){
                     if(primo(primero-aux2) == 0){
-                        if(aux2 > minimo) {
+                        if(aux2 > minimo) { //que el primo el minimo sea mayor al dado
                             aux3=primero-aux2
                             lista += Pair(aux2, aux3)
                             break;
